@@ -1,0 +1,8 @@
+    let imgURL = document.querySelector('._aagv[style="padding-bottom: 125%;"]>img').src
+    const copyImageToClipboard = async (img) => {
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          'image/jpeg': await fetch(img).then((r) => r.blob()),
+        }),
+      ]);
+     }

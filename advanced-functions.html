@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<title>Advanced Functions</title>
+      <!--<link rel="stylesheet" href="RPS-style/rock-paper-scissor.css">-->
+	</head>
+	<body> 
+    <button class="js-add-cart">Add to cart</button>
+    <p class="js-confirmation"></p>
+
+    <button class="js-test-button">Click</button>
+
+    <input class="js-num-input" placeholder="Store numbers" type="text" onkeydown="storingNums(event)">
+    
+    <script src="advanced-functions.js">
+      //localStorage & JSON example - off topic
+      let storing = [];
+      function storingNums(event){
+        let key = event.key;
+        if (key === 'Enter'){
+          storing.push(document.querSelector('.js-num-input').value);
+          localStorage.setItem('nums', JSON.stringify(storing));
+        }
+      }
+
+      /*later 
+      create an input to retrieve a value from storing array
+      based on a number inputted from user.
+      i.e., if number 3, grab third thing in array (storing[2])
+
+      use JSON.parse() to turn JSON.stringify()'d array back
+      to an object
+      */
+    </script>
+	</body>    
+</html>
+

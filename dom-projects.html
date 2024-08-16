@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> DOM Projects</title>
+        <style>
+            body {
+                font-family: Arial;
+            } /* Will change the entire body. could also do p for paragraphs only
+            and good to keep at top to be overwritten later, in case*/
+            
+            .sub-button{
+                border: none;
+                background-color: black;
+                color: white;
+                padding-left: 15px;
+                padding-right: 15px;
+                padding: 10px;
+                font-weight: bold;
+                border-radius: 50px;
+                cursor: pointer;
+                margin-bottom: 50px;
+            }
+
+            .show-sub{
+                background-color: rgb(240,240,240);
+                color: black;
+            } /* Latter classes override previous classes*/
+        </style>
+    </head>
+    
+    <body>  
+        <p>YouTube Subscribe Button</p>
+        <button class="js-sub-button sub-button" onclick="
+            buttonChange();
+        ">Subscribe</button>
+        
+        <p>Cost Calculator</p>
+        <input placeholder="Enter cost" class="js-cost-input" onkeydown="keyChecker(event);"> <!--event exists as object in HTML I guess-->
+        <button onclick="calculateCost();">Calculate</button>
+        <p class="js-price-low"> Cost less than or equal to $40 -> +$10 HST </p>
+        <p class="js-price-high"> Cost more than $40 -> Free shipping</p>
+        <p class="js-final-price"></p>
+
+        <script>
+            function calculateCost(){
+                console.log('entered func');
+                const costInput = document.querySelector(".js-cost-input").value;
+
+                if (costInput >= 0 && costInput<=40){
+                    document.querySelector('.js-final-price').innerText = `The total cost will be $${Number(costInput)+10}`;
+                }else if (costInput > 40){
+                    document.querySelector('.js-final-price').innerText = `The total cost will be $${costInput}`;
+                }else{
+                    document.querySelector('.js-final-price').innerText = `This price is invalid!`;
+                }
+            }
+
+            function keyChecker(event){
+                if(event.key === 'Enter'){ //Event doesn't exist in Javascript
+                    calculateCost();
+                }
+            }
+
+            function buttonChange(){
+                const buttonElement = document.querySelector('.js-sub-button');
+                const buttonStyle = document.querySelector('.sub-button');
+                    if(buttonElement.innerText === 'Subscribe'){
+                        buttonElement.innerText = 'Subscribed';
+                        /*buttonStyle.style.backgroundColor = rgb(240,240,240);
+                        buttonStyle.style.color = "black";
+                        So this works technically, however
+                        the youtube guy did it by adding another class to the button obj here
+                        but that "another class" was already created in style, 
+                        he just added the second style class to the button here */
+                        buttonElement.classList.add('show-sub');
+                    }else{
+                        buttonElement.innerText = 'Subscribe';
+                        buttonElement.classList.remove('show-sub');
+                }
+            }
+        </script>
+    </body>    
+</html>
+
